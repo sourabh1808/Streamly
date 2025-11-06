@@ -1,0 +1,36 @@
+{
+  "name": "streamly-server",
+  "version": "1.0.0",
+  "description": "Streamly backend server - local recording studio",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "worker": "node src/workers/mediaWorker.js"
+  },
+  "keywords": ["streaming", "recording", "webrtc"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "socket.io": "^4.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "aws-sdk": "^2.1498.0",
+    "multer": "^1.4.5-lts.1",
+    "bullmq": "^5.0.0",
+    "ioredis": "^5.3.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "express-session": "^1.17.3",
+    "uuid": "^9.0.1",
+    "nanoid": "^5.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
