@@ -1,9 +1,18 @@
 import AWS from 'aws-sdk';
 
+const endpointRaw = process.env.B2_ENDPOINT || '';
+const endpoint = endpointRaw.startsWith('http') ? endpointRaw : `https://${endpointRaw}`;
+
+if (!process.env.B2_KEY_ID || !process.env.B2_APPLICATION_KEY) {
+  console.warn('Backblaze credentials missing: set B2_KEY_ID and B2_APPLICATION_KEY in .env');
+}
+
 const s3 = new AWS.S3({
-  endpoint: process.env.B2_ENDPOINT,
-  accessKeyId: process.env.B2_KEY_ID,
-  secretAccessKey: process.env.B2_APPLICATION_KEY,
+  endpoint: new AWS.Endpoint(endpoint),
+  credentials: {
+    accessKeyId: process.env.B2_KEY_ID,
+    secretAccessKey: process.env.B2_APPLICATION_KEY
+  },
   s3ForcePathStyle: true,
   signatureVersion: 'v4',
   region: process.env.B2_REGION

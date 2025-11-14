@@ -1,7 +1,7 @@
+import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'http';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import session from 'express-session';
 import connectDB from './config/database.js';
 import passport from './config/passport.js';
@@ -10,8 +10,6 @@ import authRoutes from './routes/auth.js';
 import studioRoutes from './routes/studios.js';
 import recordingRoutes from './routes/recordings.js';
 import uploadRoutes from './routes/upload.js';
-
-dotenv.config();
 
 const app = express();
 const server = createServer(app);

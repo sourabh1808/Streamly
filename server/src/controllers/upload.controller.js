@@ -73,13 +73,25 @@ export const finalizeUpload = async (req, res) => {
       recording.participants[participantIndex].uploadComplete = true;
     }
 
+    // Check if all participants have completed uploads
+    const allUploadsComplete = recording.participants.every(
+      p => p.uploadComplete === true
+    );
+
+    // Update recording status to completed if all uploads are done
+    if (allUploadsComplete) {
+      recording.status = 'completed';
+      recording.endedAt = new Date();
+    }
+
     await recording.save();
 
     res.json({ 
       message: 'Upload finalized successfully',
       sessionId,
       participantId,
-      trackType
+      trackType,
+      recordingStatus: recording.status
     });
   } catch (error) {
     console.error('Finalize error:', error);

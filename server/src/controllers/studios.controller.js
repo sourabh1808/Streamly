@@ -60,7 +60,8 @@ export const getStudioByInviteCode = async (req, res) => {
     res.json({
       _id: studio._id,
       name: studio.name,
-      inviteCode: studio.inviteCode
+      inviteCode: studio.inviteCode,
+      owner: studio.owner
     });
   } catch (error) {
     console.error(error);
